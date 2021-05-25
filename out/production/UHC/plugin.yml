@@ -1,0 +1,20 @@
+name: UHC
+version: 5.0
+authors:
+  - StarSnake
+  - Nicoseal
+main: com.nakeseal.uhc.UHC
+api-version: 1.14
+commands:
+  prepare:
+    description: Prepara la zona de juego.
+    usage: /prepare <map-size>
+  team:
+    description: Comandos para el manejo de los equipos.
+    usage: /team [list|join] [|team-name]
+  tc:
+    description: Chat de team.
+    usage: /tc <message>
+  inv:
+    description: Espia el inventario de un jugador.
+    usage: /inv <player>
