@@ -83,26 +83,15 @@ public class UHCCommands implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("team")) {
             if (args.length >= 1) {
                 if (args[0].equals("list")) {
-                    player.sendMessage("ROJO " + UHCBoard.red.getEntries());
-                    player.sendMessage("VERDE " + UHCBoard.green.getEntries());
-                    player.sendMessage("AZUL " + UHCBoard.blue.getEntries());
-                    player.sendMessage("NEGRO " + UHCBoard.black.getEntries());
-                    player.sendMessage("ROSA " + UHCBoard.pink.getEntries());
-                    player.sendMessage("AMARILLO " + UHCBoard.yellow.getEntries());
-                    player.sendMessage("BLANCO " + UHCBoard.white.getEntries());
-                    player.sendMessage("LGBT " + UHCBoard.gay.getEntries());
-                    player.sendMessage("DEFAULT " + UHCBoard.def.getEntries());
+                    for(int i=0; i<9; i++) {
+                        player.sendMessage(UHCBoard.teams[i].getDisplayName() + UHCBoard.teams[i].getEntries());
+                    }
                 }
                 else if (args[0].equals("join")) {
                     String t_name = args[1];
-                    if(UHCBoard.red.getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.red.addEntry(player.getName());
-                    if(UHCBoard.green.getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.green.addEntry(player.getName());
-                    if(UHCBoard.blue.getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.blue.addEntry(player.getName());
-                    if(UHCBoard.black.getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.black.addEntry(player.getName());
-                    if(UHCBoard.pink.getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.pink.addEntry(player.getName());
-                    if(UHCBoard.yellow.getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.yellow.addEntry(player.getName());
-                    if(UHCBoard.white.getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.white.addEntry(player.getName());
-                    if(UHCBoard.gay.getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.gay.addEntry(player.getName());
+                    for(int i=0; i<8; i++){
+                        if(UHCBoard.teams[i].getDisplayName().equalsIgnoreCase(t_name)) UHCBoard.teams[i].addEntry(player.getName());
+                    }
                 }
             } else {
                 player.sendMessage("/team <list|join> <|team-name>");
