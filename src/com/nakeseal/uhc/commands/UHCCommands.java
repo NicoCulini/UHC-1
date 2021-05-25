@@ -36,15 +36,15 @@ public class UHCCommands implements CommandExecutor {
         Player player = (Player) sender;
         Random rand = new Random();
 
-        UHCBoard.red.setPrefix(ChatColor.RED + "[ROJO] " + ChatColor.WHITE);
-        UHCBoard.green.setPrefix(ChatColor.GREEN + "[VERDE] " + ChatColor.WHITE);
-        UHCBoard.blue.setPrefix(ChatColor.BLUE + "[AZUL] " + ChatColor.WHITE);
-        UHCBoard.black.setPrefix(ChatColor.BLACK + "[NEGRO] " + ChatColor.WHITE);
-        UHCBoard.pink.setPrefix(ChatColor.LIGHT_PURPLE + "[ROSA] " + ChatColor.WHITE);
-        UHCBoard.yellow.setPrefix(ChatColor.YELLOW + "[AMARILLO] " + ChatColor.WHITE);
-        UHCBoard.white.setPrefix(ChatColor.GRAY + "[BLANCO] " + ChatColor.WHITE);
-        UHCBoard.gay.setPrefix(ChatColor.MAGIC + "[LGBT] " + ChatColor.WHITE);
-        UHCBoard.def.setPrefix(ChatColor.GRAY + "[DEFAULT] " + ChatColor.WHITE);
+        UHCBoard.teams[0].setPrefix(ChatColor.RED + "[ROJO] " + ChatColor.WHITE);
+        UHCBoard.teams[1].setPrefix(ChatColor.GREEN + "[VERDE] " + ChatColor.WHITE);
+        UHCBoard.teams[2].setPrefix(ChatColor.BLUE + "[AZUL] " + ChatColor.WHITE);
+        UHCBoard.teams[3].setPrefix(ChatColor.BLACK + "[NEGRO] " + ChatColor.WHITE);
+        UHCBoard.teams[4].setPrefix(ChatColor.LIGHT_PURPLE + "[ROSA] " + ChatColor.WHITE);
+        UHCBoard.teams[5].setPrefix(ChatColor.YELLOW + "[AMARILLO] " + ChatColor.WHITE);
+        UHCBoard.teams[6].setPrefix(ChatColor.GRAY + "[BLANCO] " + ChatColor.WHITE);
+        UHCBoard.teams[7].setPrefix(ChatColor.MAGIC + "[LGBT] " + ChatColor.WHITE);
+        UHCBoard.teams[8].setPrefix(ChatColor.GRAY + "[DEFAULT] " + ChatColor.WHITE);
 
         if (cmd.getName().equalsIgnoreCase("prepare")) {
             if (args.length >= 1) {
@@ -56,107 +56,23 @@ public class UHCCommands implements CommandExecutor {
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"worldborder center 0 0");
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"worldborder set " + map_size);
 
-                if(UHCBoard.red.getSize() > 0){
-                    int index = rand.nextInt(8);
-                    while (cor_used[index]) index = rand.nextInt(8);
-                    cor_used[index] = true;
-                    int high = getHighestY(cords_x[index],cords_z[index]);
-                    for (String pj : UHCBoard.red.getEntries()) {
-                        String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                        if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
-                        }
-                    }
+                int cant = 0;
+                for(int i=0; i<8; i++){
+                    if(UHCBoard.teams[i].getSize() > 0) cant++;
                 }
-                if(UHCBoard.green.getSize() > 0){
-                    int index = rand.nextInt(8);
-                    while(cor_used[index]) index = rand.nextInt(8);
-                    cor_used[index] = true;
-                    int high = getHighestY(cords_x[index],cords_z[index]);
-                    for(String pj : UHCBoard.green.getEntries()) {
-                        String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                        if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
-                        }
-                    }
-                }
-                if(UHCBoard.blue.getSize() > 0){
-                    int index = rand.nextInt(8);
-                    while(cor_used[index]) index = rand.nextInt(8);
-                    cor_used[index] = true;
-                    int high = getHighestY(cords_x[index],cords_z[index]);
-                    for(String pj : UHCBoard.blue.getEntries()) {
-                        String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                        if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
-                        }
-                    }
-                }
-                if(UHCBoard.black.getSize() > 0){
-                    int index = rand.nextInt(8);
-                    while(cor_used[index]) index = rand.nextInt(8);
-                    cor_used[index] = true;
-                    int high = getHighestY(cords_x[index],cords_z[index]);
-                    for(String pj : UHCBoard.black.getEntries()) {
-                        String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                        if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
-                        }
-                    }
-                }
-                if(UHCBoard.pink.getSize() > 0){
-                    int index = rand.nextInt(8);
-                    while(cor_used[index]) index = rand.nextInt(8);
-                    cor_used[index] = true;
-                    int high = getHighestY(cords_x[index],cords_z[index]);
-                    for(String pj : UHCBoard.pink.getEntries()) {
-                        String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                        if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
-                        }
-                    }
-                }
-                if(UHCBoard.yellow.getSize() > 0){
-                    int index = rand.nextInt(8);
-                    while(cor_used[index]) index = rand.nextInt(8);
-                    cor_used[index] = true;
-                    int high = getHighestY(cords_x[index],cords_z[index]);
-                    for(String pj : UHCBoard.yellow.getEntries()) {
-                        String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                        if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
-                        }
-                    }
-                }
-                if(UHCBoard.white.getSize() > 0){
-                    int index = rand.nextInt(8);
-                    while(cor_used[index]) index = rand.nextInt(8);
-                    cor_used[index] = true;
-                    int high = getHighestY(cords_x[index],cords_z[index]);
-                    for(String pj : UHCBoard.white.getEntries()) {
-                        String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                        if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
-                        }
-                    }
-                }
-                if(UHCBoard.gay.getSize() > 0){
-                    int index = rand.nextInt(8);
-                    while(cor_used[index]) index = rand.nextInt(8);
-                    cor_used[index] = true;
-                    int high = getHighestY(cords_x[index],cords_z[index]);
-                    for(String pj : UHCBoard.gay.getEntries()) {
-                        String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                        if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
+
+                for(int i=0; i<8; i++){
+                    if(UHCBoard.teams[i].getSize() > 0){
+                        int index = rand.nextInt(cant);
+                        while (cor_used[index]) index = rand.nextInt(cant);
+                        cor_used[index] = true;
+                        int high = getHighestY(cords_x[index],cords_z[index]);
+                        for (String pj : UHCBoard.teams[i].getEntries()) {
+                            String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
+                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
+                            if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
+                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
+                            }
                         }
                     }
                 }

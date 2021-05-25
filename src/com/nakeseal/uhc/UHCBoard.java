@@ -11,13 +11,8 @@ public class UHCBoard {
     static ScoreboardManager manager = Bukkit.getScoreboardManager();
     public static org.bukkit.scoreboard.Scoreboard board = Objects.requireNonNull(manager).getNewScoreboard();
     public static Objective obj = UHCBoard.board.registerNewObjective("Health", "health", "Health");
-    public static Team red = board.registerNewTeam("Rojo");
-    public static Team green = board.registerNewTeam("Verde");
-    public static Team blue = board.registerNewTeam("Azul");
-    public static Team black = board.registerNewTeam("Negro");
-    public static Team pink = board.registerNewTeam("Rosa");
-    public static Team yellow = board.registerNewTeam("Amarillo");
-    public static Team white = board.registerNewTeam("Blanco");
-    public static Team gay = board.registerNewTeam("LGBT");
-    public static Team def = board.registerNewTeam("DEFAULT");
+    public static Team teams[] = {board.registerNewTeam("Rojo"),board.registerNewTeam("Verde"),
+            board.registerNewTeam("Azul"),board.registerNewTeam("Negro"),board.registerNewTeam("Rosa"),
+            board.registerNewTeam("Amarillo"),board.registerNewTeam("Blanco"),board.registerNewTeam("LBGT"),
+            board.registerNewTeam("Default")};
 }
