@@ -134,7 +134,7 @@ public class UHCEvents implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        UHCBoard.def.addEntry(event.getPlayer().getDisplayName());
+        UHCBoard.teams[8].addEntry(event.getPlayer().getDisplayName());
         UHCBoard.obj.setDisplaySlot(DisplaySlot.PLAYER_LIST);
         event.getPlayer().setScoreboard(UHCBoard.board);
     }
