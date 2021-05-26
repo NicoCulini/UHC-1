@@ -114,6 +114,10 @@ public class UHCEvents implements Listener {
             event.getDrops().clear();
             Objects.requireNonNull(e.getLocation().getWorld()).dropItem(e.getLocation(),new ItemStack(Material.COOKED_MUTTON,rand.nextInt(3)+1));
             e.getLocation().getWorld().dropItem(e.getLocation(),new ItemStack(Material.WHITE_WOOL,rand.nextInt(1)+1));
+        } else if(e instanceof Fish){
+            Random rand = new Random();
+            event.getDrops().clear();
+            Objects.requireNonNull(e.getLocation().getWorld()).dropItem(e.getLocation(),new ItemStack(Material.COOKED_SALMON,rand.nextInt(3)+1));
         }
     }
 
