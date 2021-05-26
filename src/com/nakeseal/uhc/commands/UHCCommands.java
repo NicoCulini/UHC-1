@@ -46,40 +46,6 @@ public class UHCCommands implements CommandExecutor {
         UHCBoard.teams[7].setPrefix(ChatColor.MAGIC + "[LGBT] " + ChatColor.WHITE);
         UHCBoard.teams[8].setPrefix(ChatColor.GRAY + "[DEFAULT] " + ChatColor.WHITE);
 
-        if (cmd.getName().equalsIgnoreCase("prepare")) {
-            if (args.length >= 1) {
-                int map_size = Integer.parseInt(args[0]);
-                int corner = (map_size/2)-1;
-                boolean[] cor_used = {false, false, false, false, false, false, false, false};
-                int[] cords_x = {corner, corner, -corner, -corner, corner/2, corner/2, -(corner/2), -(corner/2)};
-                int[] cords_z = {corner, -corner, corner, -corner, corner, -corner, corner, -corner};
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"worldborder center 0 0");
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"worldborder set " + map_size);
-
-                int cant = 0;
-                for(int i=0; i<8; i++){
-                    if(UHCBoard.teams[i].getSize() > 0) cant++;
-                }
-
-                for(int i=0; i<8; i++){
-                    if(UHCBoard.teams[i].getSize() > 0){
-                        int index = rand.nextInt(cant);
-                        while (cor_used[index]) index = rand.nextInt(cant);
-                        cor_used[index] = true;
-                        int high = getHighestY(cords_x[index],cords_z[index]);
-                        for (String pj : UHCBoard.teams[i].getEntries()) {
-                            String comm = "tp " + pj + " " + cords_x[index] + " " + high + " " + cords_z[index];
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),comm);
-                            if (new Location(Bukkit.getWorlds().get(0), cords_x[index],high-1,cords_z[index]).getBlock().getType() == Material.BEDROCK) {
-                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"give " + pj + " minecraft:oak_boat");
-                            }
-                        }
-                    }
-                }
-            } else {
-                player.sendMessage("/prepare <map-size>");
-            }
-        }
         if (cmd.getName().equalsIgnoreCase("team")) {
             if (args.length >= 1) {
                 if (args[0].equals("list")) {

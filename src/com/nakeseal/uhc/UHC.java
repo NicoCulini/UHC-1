@@ -1,5 +1,7 @@
 package com.nakeseal.uhc;
 
+import com.nakeseal.uhc.commands.PrepareCommand;
+import com.nakeseal.uhc.commands.PrepareTabCommand;
 import com.nakeseal.uhc.commands.UHCCommands;
 import com.nakeseal.uhc.events.UHCEvents;
 import com.nakeseal.uhc.items.UHCItems;
@@ -15,7 +17,8 @@ public class UHC extends JavaPlugin {
         UHCItems.init();
         UHCCommands commands = new UHCCommands();
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[UHC-NN]: Plugin iniciado!");
-        Objects.requireNonNull(getCommand("prepare")).setExecutor(commands);
+        Objects.requireNonNull(this.getCommand("prepare")).setExecutor(new PrepareCommand());
+        Objects.requireNonNull(this.getCommand("prepare")).setTabCompleter(new PrepareTabCommand());
         Objects.requireNonNull(getCommand("team")).setExecutor(commands);
         Objects.requireNonNull(getCommand("tc")).setExecutor(commands);
         Objects.requireNonNull(getCommand("inv")).setExecutor(commands);
