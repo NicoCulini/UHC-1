@@ -1,13 +1,13 @@
 package com.nakeseal.uhc.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.CommandExecutor;
 
 import com.nakeseal.uhc.UHCBoard;
 
@@ -36,7 +36,9 @@ public class PrepareCommand implements CommandExecutor
     {
         if (label.equalsIgnoreCase("prepare"))
         {
-            if (!(sender instanceof Player)) {
+            // Not a player
+            if (!(sender instanceof Player))
+            {
                 // Message to console
                 sender.sendMessage("Command only available for player");
             }
@@ -67,7 +69,7 @@ public class PrepareCommand implements CommandExecutor
                 if(UHCBoard.teams[i].getSize() > 0) cant++;
             }
 
-            for(int i=0; i<8; i++)
+            for (int i=0; i<8; i++)
             {
                 if(UHCBoard.teams[i].getSize() > 0)
                 {

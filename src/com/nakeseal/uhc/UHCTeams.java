@@ -2,12 +2,15 @@ package com.nakeseal.uhc;
 
 import org.bukkit.ChatColor;
 
-public class UHCTeams {
-    public static void init(){
+public class UHCTeams
+{
+    public static void init()
+    {
         teamColorAssing();
     }
 
-    private static void teamColorAssing() {
+    private static void teamColorAssing()
+    {
         UHCBoard.teams[0].setPrefix(ChatColor.RED + "[ROJO] " + ChatColor.WHITE);
         UHCBoard.teams[1].setPrefix(ChatColor.GREEN + "[VERDE] " + ChatColor.WHITE);
         UHCBoard.teams[2].setPrefix(ChatColor.BLUE + "[AZUL] " + ChatColor.WHITE);

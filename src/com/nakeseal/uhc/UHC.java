@@ -1,33 +1,46 @@
 package com.nakeseal.uhc;
 
-import com.nakeseal.uhc.commands.PrepareCommand;
-import com.nakeseal.uhc.commands.PrepareTabCommand;
-import com.nakeseal.uhc.commands.UHCCommands;
+import com.nakeseal.uhc.commands.*;
 import com.nakeseal.uhc.events.UHCEvents;
 import com.nakeseal.uhc.items.UHCItems;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import java.util.Objects;
 
-public class UHC extends JavaPlugin {
+public class UHC extends JavaPlugin
+{
     @Override
-    public void onEnable() {
+    public void onEnable()
+    {
         this.getServer().getPluginManager().registerEvents(new UHCEvents(), this);
         UHCItems.init();
         UHCTeams.init();
-        UHCCommands commands = new UHCCommands();
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[UHC-NN]: Plugin initialized!");
+        // Prepare Command
         Objects.requireNonNull(this.getCommand("prepare")).setExecutor(new PrepareCommand());
         Objects.requireNonNull(this.getCommand("prepare")).setTabCompleter(new PrepareTabCommand());
-        Objects.requireNonNull(getCommand("team")).setExecutor(commands);
-        Objects.requireNonNull(getCommand("tc")).setExecutor(commands);
-        Objects.requireNonNull(getCommand("inv")).setExecutor(commands);
+        // Inv Command
+        Objects.requireNonNull(this.getCommand("inv")).setExecutor(new InvCommand());
+        // TeamChat Command
+        Objects.requireNonNull(this.getCommand("tc")).setExecutor(new TeamChatCommand());
+        // Team Command
+        Objects.requireNonNull(this.getCommand("team")).setExecutor(new TeamCommand());
+        Objects.requireNonNull(this.getCommand("team")).setTabCompleter(new TeamTabCommand());
+        for (Player on_player : Bukkit.getOnlinePlayers())
+        {
+            UHCBoard.obj.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+            on_player.setScoreboard(UHCBoard.board);
+        }
     }
 
     @Override
-    public void onDisable() {
+    public void onDisable()
+    {
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[UHC-NN]: Plugin disabled!");
     }
 }

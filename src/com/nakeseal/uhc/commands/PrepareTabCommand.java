@@ -1,11 +1,11 @@
 package com.nakeseal.uhc.commands;
 
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class PrepareTabCommand implements TabCompleter
 {
