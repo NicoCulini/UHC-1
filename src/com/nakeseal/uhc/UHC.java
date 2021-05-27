@@ -19,7 +19,7 @@ public class UHC extends JavaPlugin
     {
         this.getServer().getPluginManager().registerEvents(new UHCEvents(), this);
         UHCItems.init();
-        UHCTeams.init();
+        UHCFunctions.setColorsTeam();
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[UHC-NN]: Plugin initialized!");
         // Prepare Command
         Objects.requireNonNull(this.getCommand("prepare")).setExecutor(new PrepareCommand());
@@ -31,6 +31,8 @@ public class UHC extends JavaPlugin
         // Team Command
         Objects.requireNonNull(this.getCommand("team")).setExecutor(new TeamCommand());
         Objects.requireNonNull(this.getCommand("team")).setTabCompleter(new TeamTabCommand());
+        // Report Command
+        Objects.requireNonNull(this.getCommand("report")).setExecutor(new ReportCommand());
         for (Player on_player : Bukkit.getOnlinePlayers())
         {
             UHCBoard.obj.setDisplaySlot(DisplaySlot.PLAYER_LIST);

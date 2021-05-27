@@ -19,8 +19,8 @@ public class TeamCommand implements CommandExecutor
             {
                 // Message to console
                 sender.sendMessage("Command only available for player");
+                return false;
             }
-            assert sender instanceof Player;
             Player player = (Player) sender;
             // Command incomplete
             if (args.length == 0 || args.length > 2 || args.length == 2 && args[0].equalsIgnoreCase("list"))

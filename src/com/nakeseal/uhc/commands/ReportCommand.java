@@ -1,21 +1,21 @@
 package com.nakeseal.uhc.commands;
 
-import com.nakeseal.uhc.UHCBoard;
-import org.bukkit.Bukkit;
+import com.nakeseal.uhc.UHCFunctions;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.Random;
 
-public class TeamChatCommand implements CommandExecutor
+public class ReportCommand implements CommandExecutor
 {
     // Command implementation
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
-        if (label.equalsIgnoreCase("tc"))
+        if (label.equalsIgnoreCase("report"))
         {
             // Not a player
             if (!(sender instanceof Player))
@@ -26,13 +26,15 @@ public class TeamChatCommand implements CommandExecutor
             }
             Player player = (Player) sender;
             // Command incomplete
-            if (args.length == 0)
+            if (args.length < 1)
             {
-                player.sendMessage(ChatColor.RED + "/tc <message>");
+                player.sendMessage(ChatColor.RED + "/report <player-to-report> <message>");
                 return true;
             }
-            // Complete command
+            // Complete command or so
             // Variables definition
+            String reported = args[0];
+            args = Arrays.copyOfRange(args, 1, args.length);
             StringBuilder sb = new StringBuilder();
             for (String arg : args)
             {
@@ -41,11 +43,12 @@ public class TeamChatCommand implements CommandExecutor
             }
             String msg = sb.toString();
             // Command execution
-            for(String team_str : Objects.requireNonNull(UHCBoard.board.getEntryTeam(player.getName())).getEntries())
+            for (Player operator : UHCFunctions.getOperators())
             {
-                Player team_member = Bukkit.getServer().getPlayer(team_str);
-                Objects.requireNonNull(team_member).sendMessage(ChatColor.BLUE + "[TEAM CHAT] " + player.getName() + ": " + msg);
+                operator.sendMessage(ChatColor.DARK_PURPLE + "Report realized to: " + ChatColor.WHITE + reported);
+                operator.sendMessage(ChatColor.DARK_PURPLE + "Message of report: " + ChatColor.GRAY + msg);
             }
+            player.sendMessage(ChatColor.GREEN + "Report to: " + ChatColor.WHITE + reported + ChatColor.GREEN + " Successful");
             return true;
         }
         return false;

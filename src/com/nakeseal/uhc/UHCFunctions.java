@@ -1,15 +1,15 @@
 package com.nakeseal.uhc;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
-public class UHCTeams
+import java.util.ArrayList;
+import java.util.List;
+
+public class UHCFunctions
 {
-    public static void init()
-    {
-        teamColorAssing();
-    }
-
-    private static void teamColorAssing()
+    public static void setColorsTeam()
     {
         UHCBoard.teams[0].setPrefix(ChatColor.RED + "[ROJO] " + ChatColor.WHITE);
         UHCBoard.teams[1].setPrefix(ChatColor.GREEN + "[VERDE] " + ChatColor.WHITE);
@@ -20,5 +20,17 @@ public class UHCTeams
         UHCBoard.teams[6].setPrefix(ChatColor.GRAY + "[BLANCO] " + ChatColor.WHITE);
         UHCBoard.teams[7].setPrefix(ChatColor.MAGIC + "[LGBT] " + ChatColor.WHITE);
         UHCBoard.teams[8].setPrefix(ChatColor.GRAY + "[DEFAULT] " + ChatColor.WHITE);
+    }
+    public static List<Player> getOperators()
+    {
+        List<Player> operators = new ArrayList<Player>();
+        for (Player player : Bukkit.getServer().getOnlinePlayers())
+        {
+            if (player.isOp())
+            {
+                operators.add(player);
+            }
+        }
+        return operators;
     }
 }

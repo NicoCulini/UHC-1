@@ -1,5 +1,6 @@
 package com.nakeseal.uhc.commands;
 
+import com.nakeseal.uhc.UHCFunctions;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -41,15 +42,23 @@ public class PrepareCommand implements CommandExecutor
             {
                 // Message to console
                 sender.sendMessage("Command only available for player");
+                return false;
             }
-            assert sender instanceof Player;
             Player player = (Player) sender;
+            // Not an operator
+            if (!UHCFunctions.getOperators().contains(player))
+            {
+                // Message to console
+                sender.sendMessage(ChatColor.RED + "Command only available for operators");
+                return true;
+            }
             // Command incomplete
             if (args.length != 1)
             {
                 player.sendMessage(ChatColor.RED + "/prepare <map-size>");
                 return true;
             }
+
             // Complete command or so
             // Variables definition
             Random rand = new Random();
@@ -62,7 +71,7 @@ public class PrepareCommand implements CommandExecutor
             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"worldborder center 0 0");
             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"worldborder set " + map_size);
 
-
+            // Command Execution
             int cant = 0;
             for(int i=0; i<8; i++)
             {
