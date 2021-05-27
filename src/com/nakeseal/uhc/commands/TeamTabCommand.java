@@ -7,8 +7,6 @@ import org.bukkit.command.TabCompleter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.nakeseal.uhc.UHCBoard.teams;
-
 public class TeamTabCommand implements TabCompleter
 {
     List<String> argument_1 = new ArrayList<String>();
