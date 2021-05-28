@@ -27,13 +27,13 @@ public class TeamTabCommand implements TabCompleter
         List<String> result_1 = new ArrayList<>();
         if (team_names.isEmpty())
         {
-            team_names.add("Rojo");
-            team_names.add("Verde");
-            team_names.add("Azul");
-            team_names.add("Negro");
-            team_names.add("Rosa");
-            team_names.add("Amarillo");
-            team_names.add("Blanco");
+            team_names.add("Red");
+            team_names.add("Green");
+            team_names.add("Blue");
+            team_names.add("Black");
+            team_names.add("Pink");
+            team_names.add("Yellow");
+            team_names.add("White");
             team_names.add("LGBT");
             team_names.add("Default");
         }

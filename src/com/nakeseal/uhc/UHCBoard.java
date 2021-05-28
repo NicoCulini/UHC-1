@@ -14,13 +14,13 @@ public class UHCBoard
     public static Objective obj = UHCBoard.board.registerNewObjective("Health", "health", "Health");
     public static Team[] teams =
             {
-            board.registerNewTeam("Rojo"),
-            board.registerNewTeam("Verde"),
-            board.registerNewTeam("Azul"),
-            board.registerNewTeam("Negro"),
-            board.registerNewTeam("Rosa"),
-            board.registerNewTeam("Amarillo"),
-            board.registerNewTeam("Blanco"),
+            board.registerNewTeam("Red"),
+            board.registerNewTeam("Green"),
+            board.registerNewTeam("Blue"),
+            board.registerNewTeam("Black"),
+            board.registerNewTeam("Pink"),
+            board.registerNewTeam("Yellow"),
+            board.registerNewTeam("White"),
             board.registerNewTeam("LGBT"),
             board.registerNewTeam("Default")
             };
