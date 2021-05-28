@@ -7,14 +7,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class UHCItems {
+public class UHCItems
+{
     public static ItemStack hgapple;
-
-    public static void init(){
-        createhgapple();
+    public static void init()
+    {
+        createGoldenHead();
     }
 
-    private static void createhgapple(){
+    private static void createGoldenHead()
+    {
         ItemStack item = new ItemStack(Material.GOLDEN_APPLE,1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;

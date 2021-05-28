@@ -23,7 +23,7 @@ public class UHCFunctions
     }
     public static List<Player> getOperators()
     {
-        List<Player> operators = new ArrayList<Player>();
+        List<Player> operators = new ArrayList<>();
         for (Player player : Bukkit.getServer().getOnlinePlayers())
         {
             if (player.isOp())
@@ -32,5 +32,9 @@ public class UHCFunctions
             }
         }
         return operators;
+    }
+    public static List<Player> getOnlinePlayers()
+    {
+        return new ArrayList<>(Bukkit.getServer().getOnlinePlayers());
     }
 }

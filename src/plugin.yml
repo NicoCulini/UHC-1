@@ -1,5 +1,5 @@
 name: UHC
-version: 5.8
+version: 5.9
 authors:
   - StarSnake
   - Nicoseal
@@ -11,7 +11,7 @@ commands:
     usage: /prepare <map-size>
   team:
     description: Commands for team management.
-    usage: /team [list|join] [|team-name]
+    usage: /team <list╎join╎move> <null╎team-name╎player-name> <null╎null╎team-name>
   tc:
     description: Team chat.
     usage: /tc <message>

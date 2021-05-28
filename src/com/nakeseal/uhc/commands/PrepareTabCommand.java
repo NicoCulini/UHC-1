@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class PrepareTabCommand implements TabCompleter
 {
-    List<String> arguments = new ArrayList<String>();
+    List<String> arguments = new ArrayList<>();
     public List<String > onTabComplete(CommandSender sender, Command cmd, String label, String[] args)
     {
         if (arguments.isEmpty())
@@ -19,7 +19,7 @@ public class PrepareTabCommand implements TabCompleter
             arguments.add("7500");
             arguments.add("10000");
         }
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         if (args.length == 1)
         {
             for (String x : arguments)

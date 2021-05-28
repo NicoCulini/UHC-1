@@ -12,7 +12,7 @@ public class UHCBoard
     static ScoreboardManager manager = Bukkit.getScoreboardManager();
     public static org.bukkit.scoreboard.Scoreboard board = Objects.requireNonNull(manager).getNewScoreboard();
     public static Objective obj = UHCBoard.board.registerNewObjective("Health", "health", "Health");
-    public static Team teams[] =
+    public static Team[] teams =
             {
             board.registerNewTeam("Rojo"),
             board.registerNewTeam("Verde"),

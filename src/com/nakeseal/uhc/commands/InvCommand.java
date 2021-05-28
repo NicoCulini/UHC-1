@@ -27,7 +27,6 @@ public class InvCommand implements CommandExecutor
             // Not an operator
             if (!UHCFunctions.getOperators().contains(player))
             {
-                // Message to console
                 sender.sendMessage(ChatColor.RED + "Command only available for operators");
                 return true;
             }
